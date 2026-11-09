@@ -20,10 +20,10 @@
 
 ## 文件与验证
 
-`backend/`为Flask REST API，`frontend/`为Vue3，`docs/`为报告、任务书和证据，`deliverables/`为PPT与视频，`scripts/`为打包辅助。Git协作沿用Gitee和Conventional Commits。
+`backend/`为Flask REST API，`frontend/`为Vue3，`docs/`为需求文档、图纸与测试截图，`scripts/`为打包与启动辅助。代码按 Conventional Commits 规范提交，经 Pull Request 评审后合入主干。
 
 后端测试：`backend/.venv/Scripts/python.exe -m pytest backend/tests -q`。浏览器测试：先启动独立演示服务，再进入frontend运行`npm run test:e2e`。浏览器测试会创建测试账号，不能指向个人生产库。
 
 演示只使用`backend/demo.db`；`seed.py`拒绝清空`app.db`，已有演示库重置必须传`--reset`。个人数据和密钥不进入交付ZIP。
 
-详见 `docs/12-运行与离线交付.md`，待验收项见 `docs/02-开发任务书.md`。
+运行细节见 `一键启动说明.txt`；需求与设计见 `docs/` 下的 Word 文档，图纸源文件在 `docs/diagrams/`。
