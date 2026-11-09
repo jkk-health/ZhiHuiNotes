@@ -1,5 +1,0 @@
-2026-10-11 Windows x64
-解压至D盘全新目录；25个wheel以--no-index安装成功。
-Python 3.11.16；106后端测试通过；独立演示库与Flask同源静态网页启动成功。
-12条浏览器流程在解压后的服务再次通过。
-便携Python完整交付包的二次安装复验另见offline-runtime-install.txt。

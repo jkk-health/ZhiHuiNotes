@@ -26,4 +26,4 @@
 
 演示只使用`backend/demo.db`；`seed.py`拒绝清空`app.db`，已有演示库重置必须传`--reset`。个人数据和密钥不进入交付ZIP。
 
-运行细节见 `一键启动说明.txt`；需求与设计见 `docs/` 下的 Word 文档，图纸源文件在 `docs/diagrams/`。
+运行细节见 `一键启动说明.txt`；需求与设计见 `docs/` 下的 Word 文档，界面截图与测试结果在 `docs/evidence/`。
