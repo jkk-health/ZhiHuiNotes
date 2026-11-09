@@ -1,0 +1,32 @@
+# ---- Python / Flask ----
+backend/.venv/
+backend/.env
+backend/instance/
+backend/*.db
+backend/*.db-journal
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# ---- Node / Vite ----
+frontend/node_modules/
+frontend/dist/
+
+# ---- 编辑器 / 系统 ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ---- 临时 ----
+_ls*.txt
+*.log
+
+.tools/
+backend/.venv-original/
+release/
+artifacts/
+frontend/test-results/
+
+# ---- 课程仓库不收录的文件 ----
+docs/evidence/git-authors.txt
