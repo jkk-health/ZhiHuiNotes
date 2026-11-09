@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-11",
+  "model": "deepseek-flash",
+  "sample": "仅专用演示笔记，不含个人数据",
+  "results": [
+    {
+      "kind": "summary",
+      "status": 200,
+      "seconds": 1.27,
+      "engine": "api",
+      "reason": null,
+      "result": "本周完成 Flask REST 接口，使用 SQLite 保存个人笔记，并通过 pytest 验证了用户隔离与金额精度；下一步整理 Vue 页面和项目测试报告。",
+      "input_truncated": false
+    },
+    {
+      "kind": "tags",
+      "status": 200,
+      "seconds": 1.47,
+      "engine": "api",
+      "reason": null,
+      "result": [
+        "Python",
+        "Flask",
+        "SQLite",
+        "pytest",
+        "Vue"
+      ],
+      "input_truncated": false
+    }
+  ]
+}

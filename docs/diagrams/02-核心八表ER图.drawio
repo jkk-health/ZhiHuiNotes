@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="24.7.17">
+  <diagram id="889c13a56bb7477f94ae1eb822ade125" name="核心八表 E-R 图">
+    <mxGraphModel dx="1600" dy="1280" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1280" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2af75d42179746efbabf7b14d5212c03" value="User&#10;────────────&#10;id: Integer [PK]&#10;username: String(50) [unique]&#10;pwd_hash: String(128)&#10;salt: String(32)&#10;created_at: DateTime" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=14;fillColor=#F5FAF7;strokeColor=#32785E;fontFamily=Microsoft YaHei;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="600" y="30" width="360" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="a199a812c02b4d19a9c60d67ce842e9f" value="Notebook&#10;────────────&#10;id: Integer [PK]&#10;user_id: Integer [FK user.id]&#10;name: String(100)&#10;sort: Integer" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=14;fillColor=#F5FAF7;strokeColor=#32785E;fontFamily=Microsoft YaHei;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="70" y="320" width="360" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="bfb9bb3082b642dcab2c56a65db2e237" value="Note&#10;────────────&#10;id: Integer [PK]&#10;user_id: Integer [FK user.id]&#10;notebook_id: Integer? [FK notebook.id]&#10;title: String(200)&#10;content_html: Text&#10;content_md: Text&#10;is_top: Boolean&#10;is_deleted: Boolean&#10;is_public: Boolean [reserved]&#10;created_at, updated_at: DateTime" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=14;fillColor=#F5FAF7;strokeColor=#32785E;fontFamily=Microsoft YaHei;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="600" y="320" width="360" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="d3bb56d660c9490c90ce67e2d138c2bf" value="Tag&#10;────────────&#10;id: Integer [PK]&#10;user_id: Integer [FK user.id]&#10;name: String(50)&#10;unique(user_id, name)" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=14;fillColor=#F5FAF7;strokeColor=#32785E;fontFamily=Microsoft YaHei;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="320" width="360" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="8499c12bc7d643aebe587a8a9ff27acb" value="NoteTag&#10;────────────&#10;note_id: Integer [PK, FK note.id]&#10;tag_id: Integer [PK, FK tag.id]" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=14;fillColor=#F5FAF7;strokeColor=#32785E;fontFamily=Microsoft YaHei;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="680" width="360" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="f4435bc9104e4a49bcf220afad76086c" value="Todo&#10;────────────&#10;id: Integer [PK]&#10;user_id: Integer [FK user.id]&#10;note_id: Integer? [FK note.id]&#10;title: String(200)&#10;due_date: Date?&#10;done: Boolean&#10;created_at: DateTime" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=14;fillColor=#F5FAF7;strokeColor=#32785E;fontFamily=Microsoft YaHei;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="70" y="810" width="360" height="248" as="geometry" />
+        </mxCell>
+        <mxCell id="0dd2e46d888f474e99477ca6de84f53e" value="Mindmap&#10;────────────&#10;id: Integer [PK]&#10;user_id: Integer [FK user.id]&#10;note_id: Integer? [FK note.id]&#10;title: String(200)&#10;map_json: Text [JSON]&#10;updated_at: DateTime" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=14;fillColor=#F5FAF7;strokeColor=#32785E;fontFamily=Microsoft YaHei;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="600" y="810" width="360" height="224" as="geometry" />
+        </mxCell>
+        <mxCell id="75bb6f39e01940aebc784f331144d460" value="Bill&#10;────────────&#10;id: Integer [PK]&#10;user_id: Integer [FK user.id]&#10;type: String(2) [收/支]&#10;category: String(50)&#10;amount: Numeric(10,2)&#10;bill_date: Date&#10;remark: String(200)&#10;created_at: DateTime" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=14;fillColor=#F5FAF7;strokeColor=#32785E;fontFamily=Microsoft YaHei;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="1020" width="360" height="272" as="geometry" />
+        </mxCell>
+        <mxCell id="446871c1b885489b9692ee8dd4c3de97" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;fontSize=13;" edge="1" parent="1" source="2af75d42179746efbabf7b14d5212c03" target="a199a812c02b4d19a9c60d67ce842e9f">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="86adde51047b4ed1a02539a9473f725e" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;fontSize=13;" edge="1" parent="1" source="2af75d42179746efbabf7b14d5212c03" target="bfb9bb3082b642dcab2c56a65db2e237">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f6b61d27d62e40a5b11846cda3781530" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;fontSize=13;" edge="1" parent="1" source="2af75d42179746efbabf7b14d5212c03" target="d3bb56d660c9490c90ce67e2d138c2bf">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2e376b1782d04431ac46a38cd5b17e93" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;fontSize=13;" edge="1" parent="1" source="2af75d42179746efbabf7b14d5212c03" target="f4435bc9104e4a49bcf220afad76086c">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="b42837bbd4ca4067a5e9682cc4f3e2d7" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;fontSize=13;" edge="1" parent="1" source="2af75d42179746efbabf7b14d5212c03" target="0dd2e46d888f474e99477ca6de84f53e">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="625cbdafbf43426d8dd9b88313202ebf" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;fontSize=13;" edge="1" parent="1" source="2af75d42179746efbabf7b14d5212c03" target="75bb6f39e01940aebc784f331144d460">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="102633eea61d407db50f53c00fd51a1b" value="0..1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;fontSize=13;" edge="1" parent="1" source="a199a812c02b4d19a9c60d67ce842e9f" target="bfb9bb3082b642dcab2c56a65db2e237">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fda1960baf4b4e5ea78d4472196de29d" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;fontSize=13;" edge="1" parent="1" source="bfb9bb3082b642dcab2c56a65db2e237" target="8499c12bc7d643aebe587a8a9ff27acb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="90d21d74879b4344b01ea45cf066154b" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;fontSize=13;" edge="1" parent="1" source="d3bb56d660c9490c90ce67e2d138c2bf" target="8499c12bc7d643aebe587a8a9ff27acb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7b010f70684d4416ad4261f2ccb36d00" value="0..1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;fontSize=13;" edge="1" parent="1" source="bfb9bb3082b642dcab2c56a65db2e237" target="f4435bc9104e4a49bcf220afad76086c">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2c7015fc223643ba9bf2e7f0721db1cc" value="0..1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=ERmany;startArrow=ERone;fontSize=13;" edge="1" parent="1" source="bfb9bb3082b642dcab2c56a65db2e237" target="0dd2e46d888f474e99477ca6de84f53e">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

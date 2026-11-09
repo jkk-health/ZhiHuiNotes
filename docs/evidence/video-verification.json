@@ -1,0 +1,43 @@
+{
+  "duration_seconds": 600.05,
+  "bytes": 13158983,
+  "frame_size": "1280x720",
+  "audio": "Chinese SAPI Huihui, synthesized narration",
+  "chapters": [
+    {
+      "num": 1,
+      "title": "系统入口",
+      "duration": 40
+    },
+    {
+      "num": 2,
+      "title": "笔记与可靠保存",
+      "duration": 110
+    },
+    {
+      "num": 3,
+      "title": "待办关联与回收站",
+      "duration": 80
+    },
+    {
+      "num": 4,
+      "title": "标题导图与独立编辑",
+      "duration": 90
+    },
+    {
+      "num": 5,
+      "title": "AI 预览与本地降级",
+      "duration": 90
+    },
+    {
+      "num": 6,
+      "title": "轻记账与月份统计",
+      "duration": 100
+    },
+    {
+      "num": 7,
+      "title": "测试、协作与交付",
+      "duration": 90
+    }
+  ]
+}

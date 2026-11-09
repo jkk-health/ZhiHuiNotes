@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "tree": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "id": "a",
+            "topic": "需要移动"
+          }
+        ],
+        "direction": "right",
+        "id": "b",
+        "topic": "目标分支"
+      }
+    ],
+    "id": "r",
+    "topic": "根节点"
+  }
+}

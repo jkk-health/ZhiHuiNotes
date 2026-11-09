@@ -1,0 +1,6 @@
+2026-10-11：在 D 盘全新解压目录执行 setup.ps1 -Offline。
+使用交付包自带的 Python 3.11.16 创建新的虚拟环境，无需系统预装 Python。
+使用 --no-index 从包内 25 份 wheel 安装依赖，安装成功。
+随后运行 pytest：106 passed，耗时 27.84 秒。
+JUnit 证据：offline-runtime-tests.xml。
+项目缓存、临时文件、虚拟环境和便携运行时均位于 D 盘。
