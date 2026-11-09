@@ -1,0 +1,387 @@
+/* ============================================================
+   智汇笔记 · 全局主题（Bootstrap 5 定制，避免默认蓝“AI 脸”）
+   主色：墨青 #0d7a6f（知识沉淀感）；侧边栏深色；内容区浅灰
+   ============================================================ */
+
+:root {
+  --zh-brand: #0d7a6f;
+  --zh-brand-dark: #095c54;
+  --zh-brand-light: #e6f2f0;
+  --zh-ink: #1f2933;
+  --zh-ink-soft: #52606d;
+  --zh-bg: #f5f7f8;
+  --zh-sidebar: #1f2933;
+  --zh-sidebar-hover: #323f4b;
+  --zh-radius: 12px;
+
+  /* 覆盖 Bootstrap 主色变量，按钮/链接/表单焦点随之变 */
+  --bs-primary: #0d7a6f;
+  --bs-primary-rgb: 13, 122, 111;
+  --bs-link-color: #0d7a6f;
+  --bs-link-hover-color: #095c54;
+  --bs-body-bg: #f5f7f8;
+  --bs-body-color: #1f2933;
+  --bs-border-radius: 10px;
+}
+
+body {
+  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  background: var(--zh-bg);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--zh-brand);
+  --bs-btn-border-color: var(--zh-brand);
+  --bs-btn-hover-bg: var(--zh-brand-dark);
+  --bs-btn-hover-border-color: var(--zh-brand-dark);
+  --bs-btn-active-bg: var(--zh-brand-dark);
+  --bs-btn-disabled-bg: var(--zh-brand);
+  --bs-btn-disabled-border-color: var(--zh-brand);
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--zh-brand);
+  --bs-btn-border-color: var(--zh-brand);
+  --bs-btn-hover-bg: var(--zh-brand);
+  --bs-btn-hover-border-color: var(--zh-brand);
+  --bs-btn-active-bg: var(--zh-brand-dark);
+}
+.zh-module { width:100%; max-width:1600px; margin:0 auto; }
+
+/* ---------- 工作台三栏骨架 ---------- */
+/* 骨架锁死为一屏高：页面本身不滚动，滚动交给各栏自己的 overflow 容器。
+   否则父级高度是 auto，子元素的 overflow-y:auto 拿不到确定高度，滚的会是整个页面。 */
+.zh-workbench {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.zh-sidebar {
+  width: 224px;
+  flex: 0 0 224px;
+  background: var(--zh-sidebar);
+  color: #cbd2d9;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.zh-sidebar .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 20px 14px;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.zh-sidebar .brand-badge {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--zh-brand), #35b8a9);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: #fff;
+}
+
+.zh-sidebar nav {
+  flex: 1;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.zh-sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #cbd2d9;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background 0.15s, color 0.15s;
+}
+
+.zh-sidebar nav a:hover {
+  background: var(--zh-sidebar-hover);
+  color: #fff;
+}
+
+.zh-sidebar nav a.router-link-active {
+  background: var(--zh-brand);
+  color: #fff;
+  font-weight: 600;
+}
+
+.zh-sidebar .side-foot {
+  padding: 14px 16px;
+  border-top: 1px solid #323f4b;
+  font-size: 0.85rem;
+  color: #9aa5b1;
+}
+
+/* 主内容区（列表 + 编辑两栏由页面自行排布） */
+.zh-main {
+  flex: 1;
+  min-width: 0; /* 防 flex 子项溢出 */
+  min-height: 0; /* 关键：没有它，flex 子项不肯收缩，高度会撑破一屏 */
+  display: flex;
+  flex-direction: column;
+  overflow: auto; /* 占位页（待办/记账…）内容超高时在这里滚，侧边栏不动 */
+}
+
+/* 笔记页：列表列 + 编辑列，两栏互不干扰 */
+.zh-panes {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* 列表列：头部/搜索/筛选固定，只有列表本体滚 */
+.zh-pane-list {
+  width: 320px;
+  flex: 0 0 320px;
+  border-right: 1px solid #e4e9eb;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.zh-pane-list-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain; /* 滚到尽头不再把滚动传给父级/右栏 */
+}
+
+.zh-pane-editor {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--zh-bg);
+}
+
+/* ---------- 通用卡片 ---------- */
+.zh-card {
+  background: #fff;
+  border: 1px solid #e4e9eb;
+  border-radius: var(--zh-radius);
+  box-shadow: 0 1px 3px rgba(31, 41, 51, 0.06);
+}
+
+/* 列表项 */
+.zh-note-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eef1f3;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.zh-note-item:hover {
+  background: var(--zh-brand-light);
+}
+
+.zh-note-item.active {
+  border-left: 3px solid var(--zh-brand);
+  background: var(--zh-brand-light);
+}
+
+.zh-note-item .title {
+  font-weight: 600;
+  color: var(--zh-ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.zh-note-item .meta {
+  font-size: 0.8rem;
+  color: var(--zh-ink-soft);
+  margin-top: 4px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.zh-chip {
+  display: inline-block;
+  padding: 1px 8px;
+  font-size: 0.75rem;
+  border-radius: 999px;
+  background: var(--zh-brand-light);
+  color: var(--zh-brand-dark);
+}
+
+/* 可点击的筛选 chip */
+.zh-chip-btn {
+  cursor: pointer;
+  user-select: none;
+}
+
+.zh-chip-btn:hover {
+  background: #cfe7e3;
+}
+
+.zh-chip-btn.active {
+  background: var(--zh-brand);
+  color: #fff;
+}
+
+/* 标签管理模式下，chip 内的删除小叉 */
+.zh-tag-del {
+  border: none;
+  background: transparent;
+  color: inherit;
+  padding: 0 0 0 3px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.zh-tag-del:hover {
+  color: #c0392b;
+}
+
+/* ---------- Markdown 预览（v-html 内容不吃 scoped 样式，必须全局） ---------- */
+.md-preview {
+  line-height: 1.75;
+  color: var(--zh-ink);
+  word-break: break-word;
+  overflow-y: auto;
+}
+
+.md-preview h1,
+.md-preview h2,
+.md-preview h3,
+.md-preview h4 {
+  font-weight: 700;
+  margin: 0.9em 0 0.4em;
+}
+
+.md-preview h1 { font-size: 1.45rem; }
+.md-preview h2 { font-size: 1.25rem; }
+.md-preview h3 { font-size: 1.1rem; }
+
+.md-preview p { margin: 0.5em 0; }
+
+.md-preview pre {
+  background: #1f2933;
+  color: #e6edf3;
+  border-radius: 8px;
+  padding: 12px 14px;
+  overflow-x: auto;
+  font-size: 0.88rem;
+}
+
+.md-preview code {
+  background: #eef1f3;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: Consolas, 'Courier New', monospace;
+}
+
+.md-preview pre code {
+  background: none;
+  padding: 0;
+}
+
+.md-preview table {
+  border-collapse: collapse;
+  margin: 0.6em 0;
+  width: 100%;
+}
+
+.md-preview th,
+.md-preview td {
+  border: 1px solid #dfe5e8;
+  padding: 6px 10px;
+  font-size: 0.92rem;
+}
+
+.md-preview th { background: var(--zh-brand-light); }
+
+.md-preview blockquote {
+  border-left: 3px solid var(--zh-brand);
+  padding: 2px 0 2px 12px;
+  margin: 0.6em 0;
+  color: var(--zh-ink-soft);
+}
+
+.md-preview ul,
+.md-preview ol {
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+
+.md-preview img { max-width: 100%; border-radius: 6px; }
+
+.md-preview a { color: var(--zh-brand); }
+
+/* ---------- 移动端（< 992px）：三栏堆叠，不崩 ---------- */
+@media (max-width: 991.98px) {
+  /* 窄屏：不再锁一屏，回到整页滚动，避免两栏各自滚导致找不到内容 */
+  .zh-workbench {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+
+  .zh-main {
+    overflow: visible;
+  }
+
+  .zh-sidebar {
+    width: 100%;
+    flex: none;
+    height: auto;
+    position: static;
+  }
+
+  .zh-sidebar nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 6px 10px;
+  }
+
+  .zh-sidebar nav a {
+    white-space: nowrap;
+    padding: 8px 10px;
+  }
+
+  .zh-sidebar .side-foot {
+    display: none;
+  }
+
+  .zh-panes {
+    flex-direction: column;
+  }
+
+  .zh-pane-list {
+    width: 100%;
+    flex: none;
+    max-height: 40vh;
+    border-right: none;
+    border-bottom: 1px solid #e4e9eb;
+  }
+
+  .zh-pane-list-body {
+    overflow-y: auto;
+  }
+
+  .zh-pane-editor {
+    min-height: 50vh;
+    overflow: visible;
+  }
+}
